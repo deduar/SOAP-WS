@@ -7,8 +7,8 @@
     if ($error) {
         echo "<h2>Constructor error</h2><pre>" . $error . "</pre>";
     }
-      
-    $result = $cliente->call("getProd", array("categoria" => "libros"));
+
+    $result = $cliente->call("getProd", array("categoria" => $_GET["categoria"]));
       
     if ($cliente->fault) {
         echo "<h2>Fault</h2><pre>";
