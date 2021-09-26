@@ -2,7 +2,9 @@
     require_once "./lib/nusoap.php";
     $cliente = new nusoap_client("http://localhost/~deduar/Projects/SOAP-WS/producto.php");
 	//$cliente = new nusoap_client("libros.wsdl", true);
-      
+
+    $cliente->setCredentials('admin', 'admin');
+    
     $error = $cliente->getError();
     if ($error) {
         echo "<h2>Constructor error</h2><pre>" . $error . "</pre>";
@@ -26,5 +28,3 @@
             echo "</pre>";
         }
     }
-
-?>
