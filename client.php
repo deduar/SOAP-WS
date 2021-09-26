@@ -1,7 +1,7 @@
 <?php
     require_once "./lib/nusoap.php";
-    //$cliente = new nusoap_client("http://localhost/~deduar/Projects/SOAP-WS/producto.php");
-	$cliente = new nusoap_client("libros.wsdl", true);
+    $cliente = new nusoap_client("http://localhost/~deduar/Projects/SOAP-WS/producto.php");
+	//$cliente = new nusoap_client("libros.wsdl", true);
       
     $error = $cliente->getError();
     if ($error) {
