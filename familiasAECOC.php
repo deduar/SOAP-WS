@@ -2,32 +2,41 @@
 
 $file = new SplFileObject("./familiaAECOC.xml");
 
+$category = [];
+$sub_category = [];
+$sub_sub_category = [];
+$sub_sub_sub_category = [];
 $i = 1;
 while (!$file->eof()) {
     $data = $file->fgets();
     switch ($i){
         case 5:
-            echo "Tema: ".strtolower(preg_replace('/\s+/', '-',stripAccents(trim($data))))."<br>";
+            $cat = strtolower(preg_replace('/\s+/', '-',stripAccents(trim($data))));
+            if(!in_array($cat,$category)){$category[] = $cat;}
             break;
         case 7:
-            echo "Categoría: ".strtolower(preg_replace('/\s+/', '-',stripAccents(trim($data))))."<br>";
+            $sub_cat = strtolower(preg_replace('/\s+/', '-',stripAccents(trim($data))));
+            if(!in_array($sub_cat,$sub_category)){$sub_category[] = $sub_cat;}
             break;
         case 9:
-            echo "Sub-Categorias: ".strtolower(preg_replace('/\s+/', '-',stripAccents(trim($data))))."<br>";
+            $sub_sub_cat = strtolower(preg_replace('/\s+/', '-',stripAccents(trim($data))));
+            if(!in_array($sub_sub_cat,$sub_sub_category)){$sub_sub_category[] = $sub_sub_cat;}
             break;
         case 11:
-            echo "Familia: ".strtolower(preg_replace('/\s+/', '-',stripAccents(trim($data))))."<br>";
+            $sub_sub_sub_cat = strtolower(preg_replace('/\s+/', '-',stripAccents(trim($data))));
+            if(!in_array($sub_sub_sub_cat,$sub_sub_sub_category)){$sub_sub_sub_category[] = $sub_sub_sub_cat;}
             break;
-        case 13:
-            echo "------<br>";
+        case 14:
+            $i = 1;
             break;
     }
     $i++;
-    if($i == 14){
-        $i = 1;
-    }
 }
 
+var_dump($category);echo "<br>";
+var_dump($sub_category);echo "<br>";
+var_dump($sub_sub_category);echo "<br>";
+var_dump($sub_sub_sub_category);echo "<br>";
 // Unset the file to call __destruct(), closing the file handle.
 $file = null;
 
